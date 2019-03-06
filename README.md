@@ -1,5 +1,7 @@
 `xcode 10.1 IOS 12.0 fix missing libs`
 
+issue: xcode 10 library not found for -lstdc++
+
 Libstdc++.tbd could not be found
 Apple removed the libstdc++ library from XCode10 and iOS12 and replaced it with the libc++ library.
 
