@@ -21,25 +21,25 @@ DownloadFolder=~/Downloads/
 cd $DownloadFolder
 mkdir libs
 cd libs
+mkdir iPhoneSimulator
+mkdir iPhoneOs
 
-for i in ${dyLibFiles[@]}; do
-	target=$iPhoneSimDownloadUrl$i
-	wget -N $target
-done
-
+cd iPhoneOs
 for i in ${tbdFiles[@]}; do
 	target=$iPhoneOsDownloadUrl$i
 	wget -N $target
 done
-
-echo 'Changing permission'
 chmod 775 *
-
-echo 'Changing group to wheel'
 chgrp wheel *
+cp * $iPhoneOsDir
 
-echo 'Copying files to sdk lib folders'
-cp libstdc*.tbd $iPhoneOsDir
+cd ../iPhoneSimulator
+for i in ${tbdFiles[@]}; do
+	target=$iPhoneSimDownloadUrl$i
+	wget -N $target
+done
+chmod 775 *
+chgrp wheel *
 cp * $iPhoneSimulatorDir
 
 echo 'done'
